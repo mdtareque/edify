@@ -1,0 +1,198 @@
+{{extend 'layout.html'}}
+
+{{block center}}
+{{ if message :}}
+<h3>{{=message}}</h3>
+{{pass}}
+
+{{if auth_error:}}
+<div class="alert alert-warning">{{=auth_error}}</div>
+{{else:}}
+<hr>
+
+	{{if courses != None:}}
+		<div class="col-md-6">
+			<div class="panel panel-primary" style="min-height: 400px;">
+							<div class="panel-heading">
+								<h3 class="panel-title"><div class="glyphicon glyphicon-tasks"></div> Activity Tracker</h3>
+							</div>
+							<div class="panel-body">
+								<div class="">
+											{{if len(activities) == 0:}}
+												<div class="list-group-item">
+													No activities to show
+												</div>
+											{{else:}}
+												<div class="col-md-1">
+														
+												</div>
+												<div class="col-md-11 " style="border-left: 1px solid #DEDEDE;padding-left:0">
+												{{for activity in activities:}}
+													<div class="" >
+																
+																<div class="list-group-item list-group-item-info" style="border-top-left-radius: 20px; padding-left: 20px; margin-left:20px;margin-top:20px;
+												    border-bottom-left-radius: 20px;">
+												    				<div class="glyphicon glyphicon-plus-sign" style="position:relative; left: -48px" title="updated on {{=activity.publish_date}}"></div>				
+																	<div class="glyphicon glyphicon-option-horizontal" style="position:relative; left: -52px"></div>								
+																	<div style="display:inline;margin-left: -35px">{{=activity.description}}</div>
+																</div>
+													</div>
+																		
+												{{pass}}
+												</div>
+											{{pass}}
+								</div>
+							</div>
+			</div>			
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title"><div class="glyphicon glyphicon-list"></div> Manage your courses</h3>
+							</div>
+							<div class="panel-body">							
+									{{if len(courses) != 0:}}
+										<!-- <ul class="list-group"> -->
+										{{ for course in courses:}}
+											
+												<li class="list-group-item">
+												<div class="row">
+													<div class="col-md-6">
+														<p style="padding-top: 10px;">{{=course.name}}</p>
+													</div>
+													<div class="col-md-6">
+														{{=A("Manage",_href=URL("course","main/"+str(course.id)),_class="right btn btn-success", _style="margin-top: 3px;")}}
+													</div>
+												</div>
+												<!-- <p>{{=course.name}}<span class="right"></span></p>-->
+												</li>
+											
+										{{pass}}
+										<!-- </ul> -->
+									{{else:}}
+										<p class="list-group-item">No courses are registered under you</p>
+									{{pass}}
+							</div>
+			</div>			
+		</div>
+	
+	{{pass}}
+
+	{{ if my_courses != None: }}
+	
+		<div class="col-md-6">
+			<div class="panel panel-primary" style="min-height: 450px;">
+							<div class="panel-heading">
+								<h3 class="panel-title"><div class="glyphicon glyphicon-tasks"></div> Activity Tracker</h3>
+							</div>
+							<div class="panel-body">
+								<div class="">
+									{{if len(activities) == 0:}}
+										<div class="list-group-item">
+											No activities to show
+										</div>
+									{{else:}}
+										<div class="col-md-1">
+												
+										</div>
+										<div class="col-md-11 " style="border-left: 1px solid #DEDEDE;padding-left:0">
+										{{for activity in activities:}}
+											<div class="" >
+														
+														<div class="list-group-item list-group-item-info" style="border-top-left-radius: 20px; padding-left: 20px; margin-left:20px;margin-top:20px;
+										    border-bottom-left-radius: 20px;">
+										    				<div class="glyphicon glyphicon-plus-sign" style="position:relative; left: -48px" title="updated on {{=activity.publish_date}}"></div>				
+															<div class="glyphicon glyphicon-option-horizontal" style="position:relative; left: -52px"></div>								
+															<div style="display:inline;margin-left: -35px">{{=activity.description}}</div>
+														</div>
+											</div>
+																
+										{{pass}}
+										</div>
+									{{pass}}
+								</div>
+							</div>
+			</div>			
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+			<div class="col-md-12">
+			<!--	<h4>Registered courses</h4>
+				<hr>
+			-->
+					
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title"><div class="glyphicon glyphicon-list"></div> Enrolled Courses</h3>
+							</div>
+							<div class="panel-body">
+							{{if len(my_courses) != 0 or len(my_ta_courses) !=0:}}
+								{{ for course in my_courses:}}							
+										
+										<!--<p>{{=course.cid.name}}<span class="right">{{=A("Visit",_href=URL("course","view/"+str(course.cid)),_class="btn btn-success")}}</span></p>-->
+										<a href="{{=URL("course","main/"+str(course.cid))}}" class="list-group-item">
+											{{=course.cid.name}}<span class="pull-right"><div class="glyphicon glyphicon-circle-arrow-right"> </div></span>
+										</a>		
+										<!--{{=A(course.cid.name,_href=URL("course","view/"+str(course.cid)),_class="list-group-item")}}-->
+										
+									
+								{{pass}}
+								{{ for course in my_ta_courses:}}							
+										
+										<!--<p>{{=course.cid.name}}<span class="right">{{=A("Visit",_href=URL("course","view/"+str(course.cid)),_class="btn btn-success")}}</span></p>-->
+										<a href="{{=URL("course","main/"+str(course.cid))}}" class="list-group-item">
+											{{=course.cid.name}} <div class="label label-{{ if course.approval == 'yes': }}success{{else:}}warning{{pass}}">TA</div><span class="pull-right"><div class="glyphicon glyphicon-circle-arrow-right"> </div></span>
+										</a>		
+										<!--{{=A(course.cid.name,_href=URL("course","view/"+str(course.cid)),_class="list-group-item")}}-->
+										
+									
+								{{pass}}
+							{{else:}}
+								<p class="list-group-item">You are yet to register for a course</p>
+							{{pass}}
+							</div>
+						</div>
+					
+				</div>
+
+				<div class="col-md-12">
+					<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title"><div class="glyphicon glyphicon-time"></div> Assignment Deadlines</h3>
+							</div>
+							<div class="panel-body">
+								<!-- <div class="list-group"> -->
+								{{ if len(dead_lines) != 0:}}
+									<div class="table-responsive">									
+										<table class="table table-hover">
+											<tr>
+												<th>Course</th>
+												<th>Assignment</th>
+												<th>Deadline</th>
+											</tr>
+									{{for deadline in dead_lines:}}
+										<tr class="danger">
+											<td>{{=deadline.cid.name}}</td>
+											<td>{{=deadline.title}}</td>
+											<td>{{=deadline.deadline}}</td>										
+										</tr>
+									{{pass}}
+										</table>
+									</div>
+								{{else:}}
+									<p class="list-group-item">No upcoming deadlines</p>
+								{{pass}}
+								<!-- </div> -->
+							</div>
+					</div>			
+				</div>
+			</div>
+			</div>
+		
+	{{pass}}
+
+{{pass}}
+
+
+
+{{end}}

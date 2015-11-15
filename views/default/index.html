@@ -1,0 +1,62 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,False}}
+{{extend 'layout.html'}}
+
+{{block header}}
+    <header class="container-fluid background">
+      <div class="jumbotron text-center">
+        {{if response.title:}}
+        <h1>{{=response.title}}
+          <small>{{=response.subtitle or ''}}</small></h1>
+        {{pass}}
+      </div>
+    </header>
+{{end}}
+
+{{block center}}
+<div class="col-md-12" >
+    <div class="col-md-6 center">
+      <h2 class="center">Welcome to Edify</h2>
+    </div>
+    <div id="home_banner" class="col-md-6">    
+    </div>
+    
+      <div class="col-md-4 col-xs-12">
+      </div>
+      <div class="col-md-4 col-xs-12">
+      <div class="col-md-6 col-xs-12">
+      <a class="btn btn-success center" href="user/login">Log in</a>
+      </div>
+      <div class="col-md-6 col-xs-12">
+      <a class="btn btn-success center" href="user/register">Sign up</a>
+      </div>
+      </div>
+      <div class="col-md-4 col-xs-12">
+      </div>      
+</div>
+<!--    {{if 'message' in globals():}}
+    <h2 class="center">{{=message}}</h2>
+    {{elif 'content' in globals():}}
+    {{=content}}
+    {{else:}}
+    {{=BEAUTIFY(response._vars)}}
+    {{pass}}
+-->
+{{end}}
+
+{{block right_sidebar}}
+<div class="panel panel-info">
+  <div class="panel-heading"><h3 class="panel-title"><a class="btn-block"
+      href="{{=URL('admin','default','index')}}">
+      <i class="glyphicon glyphicon-cog"></i>
+      {{=T("admin")}}
+    </a></h3></div>
+  <div class="panel-body">
+    {{=T("Don't know what to do?")}}
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">{{=A(T("Online examples"), _href=URL('examples','default','index'))}}</li>
+    <li class="list-group-item"><a href="http://web2py.com">web2py.com</a></li>
+    <li class="list-group-item"><a href="http://web2py.com/book">{{=T('Documentation')}}</a></li>
+  </ul>
+</div>
+{{end}}

@@ -1,0 +1,17 @@
+#home_banner {
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
+	background: url("../images/banner.png") no-repeat center center;
+	min-height: 300px;
+}
+
+.pos-center{
+	text-align: center;
+}
+
+.margin-buffer{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}

@@ -1,0 +1,46 @@
+{{extend 'layout.html'}}
+
+<h2>Admin interface</h2>
+<hr>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel">
+		<a class="btn btn-success" href="auth_user">Users</a>
+		<a class="btn btn-success" href="course">Courses</a>
+		<a class="btn btn-success" href="verify_faculty">Verify Faculty</a>
+		</div>
+	</div>
+</div>
+{{ if user_table :}}
+<h3>Users</h3>
+<hr>
+{{=user_table}}
+{{pass}}
+{{ if course_table :}}
+<h3>Courses</h3>
+<hr>
+{{=course_table}}
+{{pass}}
+{{ if verify_grid != None:}}
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Verify Faculty</div>
+			<div class="panel-body">
+				{{ if verify_grid == -1: }}
+				<p class="list-group-item">No approvals pending</p>
+				{{pass}}
+				{{ if verify_grid != 0: }}
+					{{for row in rows:}}
+				
+				<div class="list-group-item">					
+						<p><span style="margin-top: 10px;">{{=row.first_name}} {{=row.last_name}}</span><a href="/edify/default/admin_verify/{{=row.id}}" class="btn btn-success right">Approve</a></p>
+				</div>				
+				{{pass}}
+				{{pass}}
+			</div>
+		</div>
+	</div>
+</div>
+
+{{pass}}

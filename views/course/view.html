@@ -1,0 +1,30 @@
+{{extend 'layout.html'}}
+{{block center}}
+<div class="row ">
+
+<div class="col-md-12">
+		<div class="page-header">
+			<h1>{{=message}} <small>by {{=faculty}}</small>			
+			{{if registered == 0:}}
+				{{=A("Enroll", _href=URL("course","register/"+str(course_id)), _class="btn btn-success pull-right")}}	
+			{{else:}}
+				{{=A("Withdraw", _href=URL("course","unregister/"+str(course_id)), _class="btn btn-danger pull-right")}}
+			{{pass}}
+			{{ if is_ta == 0:}}
+				{{=A("Apply for TA", _href=URL("course","ta_register/"+str(course_id)), _class="btn btn-success pull-right")}}	
+			{{else:}}
+				{{=A("Withdraw TAship", _href=URL("course","ta_unregister/"+str(course_id)), _class="btn btn-danger pull-right")}}	
+			{{pass}}
+			</h1>
+		</div>
+		<div class="text-justified">{{=course_description}}</div>
+</div>
+
+</div>
+<div class="row">
+	<div class="col-md-12 text-center margin-buffer">		
+			
+	</div>
+</div>
+
+{{pass}}

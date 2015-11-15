@@ -1,0 +1,95 @@
+{{extend 'layout.html'}}
+
+{{block center}}
+{{ if message :}}
+<h3>{{=message}}<span class="pull-right"><a href="{{=URL('course','main/'+str(course_id))}}" class="btn btn-success">Course Wall</a></span></h3>
+{{pass}}
+
+<hr>
+
+
+	
+		<div class="col-md-6">
+			<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">Activity Tracker</h3>
+							</div>
+							<div class="panel-body">
+								<div class="list-group">
+								</div>
+							</div>
+			</div>			
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-success">
+							<div class="panel-heading">
+								<h3 class="panel-title">Pending TA requests</h3>
+							</div>
+							<div class="panel-body">
+								<div class="list-group">
+						
+					{{if len(ta_requests) != 0:}}						
+						{{ for ta in ta_requests:}}
+									<div class="list-group-item" style="min-height: 60px; vertical-align: center">										
+											<span class="pull-left">{{=ta.sid.first_name}} {{=ta.sid.last_name}}
+											</span>
+											<span class="pull-right btn btn-danger">
+												
+												<a href="{{=URL("course","reject_ta/"+str(ta.id))}}" class="glyphicon glyphicon-remove" style="text-decoration:none; color:white;"></a>
+											</span>
+											<span class="pull-right btn btn-success">												
+												<a href="{{=URL("course","approve_ta/"+str(ta.id))}}" class="glyphicon glyphicon-ok" style="text-decoration:none; color:white"></a>											
+											</span>										
+									</div>
+									<!--
+									<span class="right">
+										{{=A("Approve",_href=URL("course","approve_ta/"+str(ta.id)),_class="btn btn-success")}}
+									</span>
+									-->
+								
+								
+						{{pass}}
+						
+						
+
+					{{else:}}
+						<div class="list-group-item">No pending requests</div>
+					{{pass}}
+					</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-md-12">
+					<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Course TAs</h3>
+							</div>
+							<div class="panel-body">
+								<div class="list-group">
+								{{ if len(course_ta) != 0: }}
+								{{ for ta in course_ta:}}
+									<div class="list-group-item">
+										<p>{{=ta.sid.first_name}} {{=ta.sid.last_name}}</p>
+									</div>
+								{{pass}}
+								{{else:}}
+								<div class="list-group-item">
+										<p>No TAs assigned for this course</p>
+								</div>
+								{{pass}}
+								</div>
+							</div>
+					</div>			
+				</div>
+		</div>
+	</div>
+
+
+
+
+
+
+{{end}}

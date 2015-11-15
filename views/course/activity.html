@@ -1,0 +1,31 @@
+<div class="panel-heading">
+	<div class="glyphicon glyphicon-tasks"></div> Activity Tracker
+</div>
+<div class="panel-body">
+	
+	
+		{{if len(activities) == 0:}}
+			<div class="list-group-item">
+				No activities to show
+			</div>
+		{{else:}}
+			<div class="col-md-1">
+					
+			</div>
+			<div class="col-md-11 " style="border-left: 1px solid #DEDEDE;padding-left:0">
+			{{for activity in activities:}}
+				<div class="" >							
+							<div class="list-group-item list-group-item-info" style="border-top-left-radius: 20px; padding-left: 20px; margin-left:20px;margin-top:20px;
+												    border-bottom-left-radius: 20px;">
+			    				<div class="glyphicon glyphicon-plus-sign" style="position:relative; left: -48px" title="updated on {{=activity.publish_date}}"></div>				
+								<div class="glyphicon glyphicon-option-horizontal" style="position:relative; left: -52px"></div>								
+								<div style="display:inline;margin-left: -35px">{{=activity.description}}</div>
+							</div>
+				</div>
+									
+			{{pass}}
+			</div>
+		{{pass}}
+	
+	
+</div>

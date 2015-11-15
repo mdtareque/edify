@@ -1,0 +1,37 @@
+<div class="panel-heading">
+	<div class="glyphicon glyphicon-transfer"></div> TA Approvals
+</div>
+<div class="panel-body">
+	<div class="list-group">
+						
+					{{if len(ta_requests) != 0:}}						
+						{{ for ta in ta_requests:}}
+									<div class="list-group-item" style="min-height: 60px; vertical-align: center">					<div class="row">
+												<div class="col-md-6">
+													<span class="pull-left" style="font-weight:bold; padding-top: 10px;">{{=ta.sid.first_name}} {{=ta.sid.last_name}}
+													</span>
+												</div>
+												<div class="col-md-6">
+													<span class="pull-right">												
+														<a href="{{=URL("course","reject_ta/"+str(ta.id))}}" class="btn btn-danger"><div class="glyphicon glyphicon-remove" style="text-decoration:none; color:white"></div> Reject </a>
+													</span>
+													<span class="pull-right">												
+														<a href="{{=URL("course","approve_ta/"+str(ta.id))}}" class="btn btn-success"><div class="glyphicon glyphicon-ok" style="text-decoration:none; color:white"></div> Approve </a>											
+													</span>										
+												</div>
+											</div>			
+											
+											
+									</div>									
+								
+								
+						{{pass}}
+						
+						
+
+					{{else:}}
+						<div class="list-group-item">No pending approvals</div>
+					{{pass}}
+	</div>
+	
+</div>

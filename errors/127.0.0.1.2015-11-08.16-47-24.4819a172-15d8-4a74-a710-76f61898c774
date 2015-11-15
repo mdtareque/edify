@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.AttributeError'> "
+p3
+sS'layer'
+p4
+S'/Users/adityagaykar/Dropbox/Development/MtechCSE/Sem1/SCE/Project/web2py/applications/edify/controllers/course.py'
+p5
+sS'code'
+p6
+S'import time\n\ndef index():\n\t#list the courses available for current year for registration\n\tcourses = []\n\trows = db(db.courses).select()\n\tfor row in rows:\n\t\tcourses.append([row.name, row.faculty])\n\treturn locals()\nresponse._vars=response._caller(index)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/Users/adityagaykar/Dropbox/Development/MtechCSE/Sem1/SCE/Project/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/Users/adityagaykar/Dropbox/Development/MtechCSE/Sem1/SCE/Project/web2py/applications/edify/controllers/course.py", line 10, in <module>\n  File "/Users/adityagaykar/Dropbox/Development/MtechCSE/Sem1/SCE/Project/web2py/gluon/globals.py", line 412, in <lambda>\n    self._caller = lambda f: f()\n  File "/Users/adityagaykar/Dropbox/Development/MtechCSE/Sem1/SCE/Project/web2py/applications/edify/controllers/course.py", line 6, in index\n    rows = db(db.courses).select()\n  File "/Users/adityagaykar/Dropbox/Development/MtechCSE/Sem1/SCE/Project/web2py/gluon/packages/dal/pydal/base.py", line 906, in __getattr__\n    return super(DAL, self).__getattr__(key)\n  File "/Users/adityagaykar/Dropbox/Development/MtechCSE/Sem1/SCE/Project/web2py/gluon/packages/dal/pydal/helpers/classes.py", line 30, in __getattr__\n    raise AttributeError\nAttributeError\n'
+p11
+s.

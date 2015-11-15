@@ -1,0 +1,46 @@
+<div class="panel-heading">
+	<div class="glyphicon glyphicon-pencil"></div> Assignments
+</div>
+<div class="panel-body">
+	{{ if is_staff or ta_approved: }}
+		
+		
+		<form class="" action="{{=URL('course','upload_assignment/'+str(course_id))}}" method="post" enctype="multipart/form-data">
+		  <div class="form-group">
+		    <label for="assignment_name">Title</label>
+		    <input type="text" class="form-control" name="assignment_name" id="assignment_name" placeholder="Assignment #" required>
+		  </div>
+		  <div class="form-group">
+		    <label for="assignment_file">Upload</label>
+		    <input type="file" class="form-control" name="assignment_file" id="assignment_file" required>
+		  </div>
+		  <div class="form-group">
+		    <label for="assignment_deadline">Deadline</label>
+		    <input type="date" class="form-control" name="assignment_deadline" id="assignment_deadline" required>
+		  </div>
+		  <div class="form-group">
+		    <label for="assignment_total_marks">Total marks</label>
+		    <input type="number" class="form-control" name="assignment_total_marks" id="assignment_total_marks" required>
+		  </div>
+		  <button type="submit" class="btn btn-default">Upload</button>
+		</form>
+		
+		<hr>
+	{{pass}}
+		
+		{{if len(links)!=0:}}
+			<ul class="list-group">
+			{{for link in links:}}
+			{{if is_staff or ta_approved:}}
+				<li class="list-group-item"><a title="Uploaded by {{=link.sid.first_name}} {{=link.sid.last_name}} on {{=link.upload_date}}" href="{{=URL('default','download/'+link.attachment)}}">{{=link.title}}</a><a href="{{=URL('course','delete_assignment/'+str(link.id))}}"><div class="glyphicon glyphicon-trash pull-right"></div></a></li>
+			{{else:}}
+				<a title="Uploaded by {{=link.sid.first_name}} {{=link.sid.last_name}} on {{=link.upload_date}}" href="{{=URL('default','download/'+link.attachment)}}"><li class="list-group-item">{{=link.title}}<div class="glyphicon glyphicon-download pull-right"></div></li></a>
+			{{pass}}
+			{{pass}}
+			</ul>
+		{{else:}}
+			<h5>No assignments uploaded</h5>
+		{{pass}}
+	
+	
+</div>

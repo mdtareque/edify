@@ -1,0 +1,35 @@
+<div class="panel-heading">
+	<div class="glyphicon glyphicon-list-alt"></div> Resources
+</div>
+<div class="panel-body">
+	{{ if is_staff or ta_approved: }}				
+		<form class="form-inline" action="{{=URL('course','upload_resource/'+str(course_id))}}" method="post" enctype="multipart/form-data">
+		  <div class="form-group">
+		    <label for="resource_name">Title</label>
+		    <input type="text" class="form-control" name="resource_name" id="resource_name" placeholder="Resource #" required>
+		  </div>
+		  <div class="form-group">
+		    <label for="resource_file"></label>
+		    <input type="file" class="form-control" name="resource_file" id="resource_file" required>
+		  </div>
+		  <button type="submit" class="btn btn-default">Upload</button>
+		</form>		
+		<hr>
+	{{pass}}
+		
+		{{if len(links)!=0:}}
+			<ul class="list-group">
+			{{for link in links:}}
+				{{if is_staff or ta_approved:}}
+				<li class="list-group-item"><a title="Uploaded by {{=link.sid.first_name}} {{=link.sid.last_name}} on {{=link.upload_date}}" href="{{=URL('default','download/'+link.attachment)}}">{{=link.title}}</a><a href="{{=URL('course','delete_assignment/'+str(link.id))}}"><div class="glyphicon glyphicon-trash pull-right"></div></a></li>
+			{{else:}}
+				<a title="Uploaded by {{=link.sid.first_name}} {{=link.sid.last_name}} on {{=link.upload_date}}" href="{{=URL('default','download/'+link.attachment)}}"><li class="list-group-item">{{=link.title}}<div class="glyphicon glyphicon-download pull-right"></div></li></a>
+			{{pass}}
+			{{pass}}
+			</ul>
+		{{else:}}
+			<h5>No resources uploaded</h5>
+		{{pass}}
+	
+	
+</div>
