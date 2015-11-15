@@ -292,7 +292,7 @@ def activity():
 	if(len(course) == 0):
 		response.flash = "Invalid course"
 	else:
-		activities = db((db.activity.cid==course_id)&(db.activity.activity_scope=='all')).select()
+		activities = db((db.activity.cid==course_id)&(db.activity.activity_scope=='all')).select(orderby=~db.activity.publish_date)
 	return locals()
 
 

@@ -85,7 +85,7 @@ def home():
             course_id_set = set( [i.id for i in courses_undertaken] )    
 
             if len(course_id_set)!=0:
-                activities = db((db.activity.activity_scope == 'all') & (db.activity.cid.belongs(course_id_set))).select()
+                activities = db((db.activity.activity_scope == 'all') & (db.activity.cid.belongs(course_id_set))).select(orderby=~db.activity.publish_date)
             else :
                 activities = []
         else:
@@ -95,9 +95,9 @@ def home():
             if(len(my_ta_courses) != 0):
                 for i in my_ta_courses:
                     course_ids.add(i.cid)
-                activities = db((db.activity.activity_scope.belongs('all','ta')) & (db.activity.cid.belongs(course_ids))).select()
+                activities = db((db.activity.activity_scope.belongs('all','ta')) & (db.activity.cid.belongs(course_ids))).select(orderby=~db.activity.publish_date)
             else:
-                activities = db((db.activity.activity_scope == 'all') & (db.activity.cid.belongs(course_ids))).select()    
+                activities = db((db.activity.activity_scope == 'all') & (db.activity.cid.belongs(course_ids))).select(orderby=~db.activity.publish_date)    
             
             #activities = db((db.activity.activity_scope == 'all') & (db.activity.cid.belongs(course_ids))).select()
             dead_lines = db((db.course_assignments.deadline >= datetime.datetime.now()) & (db.course_assignments.cid.belongs(course_ids))).select()
