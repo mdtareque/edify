@@ -89,7 +89,7 @@
 						{{pass}}						
 					{{pass}}
 					</ul>
-					{{if auth.user.role != 'faculty' and auth.user.id != faculty and is_ta == 0:}}							
+					{{if auth.user.role != 'faculty' and auth.user.id != faculty and is_ta == 0 and registered != 0:}}							
 					<div class="panel panel-info">
                         <div class=" panel-heading"><div class="glyphicon glyphicon-hand-up"></div>  Attendance</div>
                         <div class="panel-body ">

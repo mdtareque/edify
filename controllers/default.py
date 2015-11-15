@@ -85,7 +85,7 @@ def home():
             course_id_set = set( [i.id for i in courses_undertaken] )    
 
             if len(course_id_set)!=0:
-                activities = db((db.activity.activity_scope == 'all') & (db.activity.cid.belongs(course_id_set))).select(orderby=~db.activity.publish_date)
+                activities = db((db.activity.activity_scope.belongs(('all','faculty'))) & (db.activity.cid.belongs(course_id_set))).select(orderby=~db.activity.publish_date)
             else :
                 activities = []
         else:
