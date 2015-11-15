@@ -86,12 +86,25 @@
 							<a href='#' class="list-group-item list-group-item-warning"><div class="glyphicon glyphicon-time"></div> Pending TAship</a>
 							<a href='{{=URL("course","ta_unregister/"+str(course_id))}}' class="list-group-item list-group-item-danger"><div class="glyphicon glyphicon-export"></div> Cancel TAship</a>
 						{{pass}}
-						{{pass}}
+						{{pass}}						
 					{{pass}}
 					</ul>
+					{{if auth.user.role != 'faculty' and auth.user.id != faculty and is_ta == 0:}}							
+					<div class="panel panel-info">
+                        <div class=" panel-heading"><div class="glyphicon glyphicon-hand-up"></div>  Attendance</div>
+                        <div class="panel-body ">
+                            <p style="text-align:center;vertical-align:middle" >95%</p>
+                        </div>
+                    </div>
+            
+            		{{pass}}
 			{{pass}}
 				
 		</div>	
 			
 	</div>
 {{pass}}
+
+
+
+

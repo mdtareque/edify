@@ -1,13 +1,39 @@
 import time
 
+POST_PER_PAGE=6
+
 @auth.requires_login()
 def index():
-	#list the courses available for current year for registration
-	courses = []
-	rows = db(db.course).select()
-	for row in rows:
-		courses.append([row.name, row.faculty.first_name + " " +  row.faculty.last_name, row.id])
-	return locals()
+#list the courses available for current year for registration
+    courses = []
+    page = request.args(0, cast=int, default=0)
+    start = page*POST_PER_PAGE
+    stop = start + POST_PER_PAGE
+    rows = db(db.course).select(limitby=(start, stop))
+    for row in rows:
+      courses.append([row.name, row.faculty.first_name + " " +  row.faculty.last_name, row.id])
+    return locals()
+
+@auth.requires_login()
+def index_search():
+    courses = []
+    page = request.args(0, cast=int, default=0)
+    start = page*POST_PER_PAGE
+    stop = start + POST_PER_PAGE
+    search_query = request.vars.search_courses
+    rows = db(db.course.name.like('%'+search_query+'%')).select(limitby=(start, stop))
+    for row in rows:
+        courses.append([row.name, row.faculty.first_name + " " +  row.faculty.last_name, row.id])
+    return locals()
+
+# @auth.requires_login()
+# def index():
+# 	#list the courses available for current year for registration
+# 	courses = []
+# 	rows = db(db.course).select()
+# 	for row in rows:
+# 		courses.append([row.name, row.faculty.first_name + " " +  row.faculty.last_name, row.id])
+# 	return locals()
 
 @auth.requires_login()
 def view():
