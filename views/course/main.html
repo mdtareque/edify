@@ -22,13 +22,16 @@
 		<div class="col-md-2">			
 					<div class="list-group">
 						<a href="#" onclick="ajax('{{=URL('course','home/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-home"></div> Home</a>
-						{{if registered or is_ta or auth.user.id == faculty:}}
+						{{if registered or is_ta_approved or auth.user.id == faculty:}}
 						<a href="#" onclick="ajax('{{=URL('course','activity/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-tasks"></div> Activity</a>	<a href="#" onclick="ajax('{{=URL('course','assignments/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-pencil"></div> Assignments</a>
 						<a href="#" onclick="ajax('{{=URL('course','resources/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-list-alt"></div> Resources</a>
 						<a href="#" onclick="ajax('{{=URL('course','upload/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-upload"></div> Upload</a>
 						<a href="#" onclick="ajax('{{=URL('course','marks/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-stats"></div> Marks</a>
+						
 						{{if auth.user.id == faculty:}}							
 							<a href="#" onclick="ajax('{{=URL('course','approvals/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-transfer"></div> TA Approvals</a>							
+						{{else:}}
+							<!-- <a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal"><div class="glyphicon glyphicon-info-sign"></div> Feedback</a> -->
 						{{pass}}
 						{{pass}}
 
@@ -37,13 +40,21 @@
 		</div>
 		<div class="col-md-8">
 			<div class="panel  panel-primary" id="course-panel" style="min-height: 400px;">							
-				<div class="panel-heading"><div class="glyphicon glyphicon glyphicon-home"></div> Home</div>
+				<div class="panel-heading"><div class="glyphicon glyphicon glyphicon-home"></div> Home				
+				</div>
 				<div class="panel-body">
 				Overview
 				<hr>
-				{{=course_description}}
+				<div id="content" {{ if has_edit_access == 1: }}contenteditable="true"{{pass}}>
+				{{=XML(course_description)}}
 				</div>
 				
+				</div>
+				{{ if has_edit_access == 1: }}								
+				<input type="hidden" value="" name = "hidediv" id="hidediv"/>
+					<a href="#" onclick='$("#hidediv").val($("#content").html());ajax("{{=URL("course","update_overview/"+str(course_id))}}", ["hidediv"],":eval")'
+					class="btn btn-success" style="    position: absolute;right: 10px;bottom: -14px;">Update</a>
+				{{pass}}
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -105,6 +116,24 @@
 	</div>
 {{pass}}
 
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 

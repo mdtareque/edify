@@ -60,10 +60,10 @@ plugins = PluginManager()
 
 #adding new fields to user table
 auth.settings.extra_fields['auth_user']= [
-  Field('course'),
-  Field('country'),
-  Field('phone',requires=IS_NOT_EMPTY(error_message=auth.messages.is_empty)),
-  Field('date_of_birth','date'),
+  # Field('course'),
+  # Field('country'),
+  # Field('phone',requires=IS_NOT_EMPTY(error_message=auth.messages.is_empty)),
+  # Field('date_of_birth','date'),
   Field('gender','text',requires=IS_IN_SET(('Male','Female'))),
   Field('role',requires=IS_IN_SET(('faculty', 'student')),readable=True,writable=True,default='student'),
   Field('admin_verified',readable=True,writable=False,default="no")]

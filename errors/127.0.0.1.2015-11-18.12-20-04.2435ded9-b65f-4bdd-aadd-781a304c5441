@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.TypeError'> sequence item 0: expected string, long found"
+p3
+sS'layer'
+p4
+S'/Users/adityagaykar/Dropbox/Development/MtechCSE/Sem1/SCE/hackathon-github/web2py/applications/edify/views/course/view_student_uploads.html'
+p5
+sS'code'
+p6
+S'response.write(\'\\n\\n\\t\\t\\t\\t\\t\\t\\t\', escape=False)\nif len(rows) != 0:\n    response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<div class="table-responsive">\\t\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<table class="table table-hover">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<tr>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<th>Sr no</th>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<th>Name</th>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<th>Marks</th>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<th>File</th>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t</tr>\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n    i =  1\n    response.write(\'\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n    names = []\n    response.write(\'\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n    for row in rows:\n        response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<tr class="success">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<td>\', escape=False)\n        response.write(i)\n        response.write(\'</td>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<td>\', escape=False)\n        response.write(row.course_assignment_upload.sid.first_name)\n        response.write(\' \', escape=False)\n        response.write(row.course_assignment_upload.sid.last_name)\n        response.write(\'</td>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n        if row.course_assignment_upload.marks:\n            response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<td><input type="text" value="\', escape=False)\n            response.write(row.course_assignment_upload.marks)\n            response.write(\'" name="\', escape=False)\n            response.write(row.course_assignment_upload.id)\n            response.write(\'" required/></td>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n        else:\n            response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<td><input type="text" value="0" name="\', escape=False)\n            response.write(row.course_assignment_upload.id)\n            response.write(\'" required/></td>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n            pass\n        response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<td><a href="\', escape=False)\n        response.write(URL(\'default\',\'download/\'+row.course_assignment_upload.attachment))\n        response.write(\'"><div class="glyphicon glyphicon-download"></div></a></td>\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n        names.append(row.course_assignment_upload.id)\n        response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t</tr>\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n        i = i + 1\n        response.write(\'\\t\\t\\t\\t\\t\\t\\t\\t\\t\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n        pass\n    response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<tr>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<td colspan="4" class="center">\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t<a href="#" onclick=\\\'ajax("\', escape=False)\n    response.write(URL("course","update_assignment_marks"))\n    response.write(\'", [\', escape=False)\n    response.write(",".join(names))\n    response.write(\'], ":eval")\\\' class="btn btn-success">Update</a>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t</td>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t</tr>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t</table>\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t</div>\\n\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\nelse:\n    response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t\\t\\t<p class="list-group-item">No uploads yet</p>\\n\\t\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n    pass\nresponse.write(\'\\n\', escape=False)'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/Users/adityagaykar/Dropbox/Development/MtechCSE/Sem1/SCE/hackathon-github/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/Users/adityagaykar/Dropbox/Development/MtechCSE/Sem1/SCE/hackathon-github/web2py/applications/edify/views/course/view_student_uploads.html", line 38, in <module>\nTypeError: sequence item 0: expected string, long found\n'
+p11
+s.

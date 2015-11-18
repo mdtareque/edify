@@ -3,5 +3,48 @@
 </div>
 <div class="panel-body">
 	
+	{{if ta_approved == 0: }}
+	{{ if(len(assignments) == 0): }}
+		<p>No assignments active for upload</p>
+	{{else:}}
+	<form class="" action="{{=URL('course','upload_student_assignment/'+str(course_id))}}" method="post" enctype="multipart/form-data">
+		  <div class="form-group">
+		    <label for="assignment_name">Title</label>
+		    <select class="form-control" name="assignment_id" id="assignment_id" required>
+		    	{{for assignment in assignments:}}
+		    		<option value="{{=assignment.id}}">{{=assignment.title}}</option>
+		    	{{pass}}
+		    </select>
+		  </div>
+		  <div class="form-group">
+		    <label for="assignment_file">Upload</label>
+		    <input type="file" class="form-control" name="assignment_file" id="assignment_file" required>
+		  </div>		  
+		  <button type="submit" class="btn btn-default">Upload</button>
+		</form>
+		<hr>
+		<p>Maximum upload limit : 5</p>
+		<hr>
+	{{pass}}
+	{{else:}}		
+		<h4>Check uploads</h4>
+		<hr>
+		{{ if(len(staff_assignments) == 0): }}
+		<p>No assignments uploaded yet</p>
+		{{else:}}
+		<select name="assignment_upload_id" class="form-control">
+				{{for assignment in staff_assignments:}}
+		    		<option value="{{=assignment.id}}">{{=assignment.title}}</option>
+		    	{{pass}}
+		</select>
+		<hr>
+		<a href="#" onclick='ajax("{{=URL("course","view_student_uploads")}}",["assignment_upload_id"],"upload_table")' class="btn btn-success">
+		Get uploads
+		</a>
+		<hr>
+		<div id="upload_table">
+		</div>
+	{{pass}}
+	{{pass}}
 	
 </div>

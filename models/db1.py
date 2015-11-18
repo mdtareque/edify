@@ -14,7 +14,10 @@ db.define_table('course',
 	Field('faculty','reference auth_user'),
 	Field('course_type',requires=IS_IN_SET(('Monsoon','Spring'))),
 	Field('course_year','integer',default=time.strftime("%Y")),
-	Field('course_description')
+	Field('course_description'),
+	Field('mid1_max', 'text',default="25"),
+	Field('mid2_max', 'text',default="25"),
+	Field('sem_max', 'text',default="100")
 	)
 
 db.define_table('course_ta',
@@ -26,9 +29,9 @@ db.define_table('course_ta',
 db.define_table('course_registration',
 	Field('cid','reference course'),
 	Field('sid','reference auth_user'),
-	Field('mid1','double'),
-	Field('mid2','double'),
-	Field('sem','float')
+	Field('mid1','double',default=-1),
+	Field('mid2','double',default=-1),
+	Field('sem','double',default=-1)
 	)
 
 db.define_table('course_resources',
@@ -47,6 +50,14 @@ db.define_table('course_assignments',
 	Field('title','text',requires=IS_NOT_EMPTY()),
 	Field('attachment','upload',requires=IS_NOT_EMPTY()),
 	Field('deadline','datetime',requires=IS_NOT_EMPTY()),
+	Field('upload_date','datetime',default=datetime.datetime.now())
+	)
+
+db.define_table('course_assignment_upload',
+	Field('aid','reference course_assignments'),
+	Field('sid','reference auth_user'),
+	Field('attachment','upload',requires=IS_NOT_EMPTY()),
+	Field('marks','double',default=0),
 	Field('upload_date','datetime',default=datetime.datetime.now())
 	)
 

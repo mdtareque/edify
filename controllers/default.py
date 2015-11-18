@@ -85,21 +85,24 @@ def home():
             course_id_set = set( [i.id for i in courses_undertaken] )    
 
             if len(course_id_set)!=0:
-                activities = db((db.activity.activity_scope.belongs(('all','faculty'))) & (db.activity.cid.belongs(course_id_set))).select(orderby=~db.activity.publish_date)
+                activities = db((db.activity.activity_scope.belongs(('all','faculty'))) & (db.activity.cid.belongs(course_id_set))).select(orderby=~db.activity.publish_date,limitby=(0, 10))
             else :
                 activities = []
         else:
             my_courses = db((db.course_registration.sid == user_id)).select()            
-            my_ta_courses = db(db.course_ta.sid == user_id).select()
+            my_ta_courses = db((db.course_ta.sid == user_id)).select()
             course_ids = set([ i.cid for i in my_courses ])            
             if(len(my_ta_courses) != 0):
-                for i in my_ta_courses:
-                    course_ids.add(i.cid)
-                activities = db((db.activity.activity_scope.belongs('all','ta')) & (db.activity.cid.belongs(course_ids))).select(orderby=~db.activity.publish_date)
+                my_ta_courses2 = db((db.course_ta.sid == user_id) & (db.course_ta.approval == 'yes')).select()
+                for i in my_ta_courses2:
+                    course_ids.add(i.cid)                    
+                query1  = (db.activity.activity_scope.belongs(['all','ta']) ) & (db.activity.cid.belongs(course_ids))
+                query2 = (db.activity.activity_scope.belongs(['student']) )& (db.activity.sid == auth.user.id)
+                activities = db(query1 | query2 ).select(orderby=~db.activity.publish_date,limitby=(0, 10))
             else:
-                activities = db((db.activity.activity_scope == 'all') & (db.activity.cid.belongs(course_ids))).select(orderby=~db.activity.publish_date)    
-            
-            #activities = db((db.activity.activity_scope == 'all') & (db.activity.cid.belongs(course_ids))).select()
+                query1  = (db.activity.activity_scope.belongs(['all']) ) & (db.activity.cid.belongs(course_ids))
+                query2 = (db.activity.activity_scope.belongs(['student']) )& (db.activity.sid == auth.user.id)
+                activities = db(query1 | query2).select(orderby=~db.activity.publish_date,limitby=(0, 10))                            
             dead_lines = db((db.course_assignments.deadline >= datetime.datetime.now()) & (db.course_assignments.cid.belongs(course_ids))).select()
     return locals()    
 
@@ -119,9 +122,20 @@ def user():
         @auth.requires_permission('read','table name',record_id)
     to decorate functions that need access control
     """
-    #if request.args(0) == 'register':
-
+    #if request.args(0) == 'register':    
     return dict(form=auth())
+
+def register():
+
+    def validate_email(form):
+        email_id = form.vars.email
+        at_i = email_id.find("@")
+        dom = email_id[at_i:]
+        if(dom != "@students.iiit.ac.in"):
+            form.errors["email"] = "Invalid email: only students mail id's are accepted"
+    auth.settings.register_onvalidation.append(validate_email)
+    form=auth.register()
+    return locals()
 
 
 @cache.action()

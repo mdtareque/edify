@@ -1,11 +1,21 @@
 <div class="panel-heading">
 	<div class="glyphicon glyphicon-home" ></div> Home
+	
 </div>
 <div class="panel-body">
-	Overview
-	<hr>
-	
-		{{=course_des}}
+				
+				Overview
+				<hr>
+				<div id="content" {{ if has_edit_access == 1: }} contenteditable="true" {{pass}}>
+				{{=XML(course_des)}}
+				</div>
+				
 	
 	
 </div>
+		{{ if has_edit_access == 1: }}								
+					<input type="hidden" value="" name = "hidediv" id="hidediv"/>
+					<a href="#" onclick='$("#hidediv").val($("#content").html());ajax("{{=URL("course","update_overview/"+str(course_id))}}", ["hidediv"],":eval")'
+					class="btn btn-success" style="    position: absolute;right: 10px;bottom: -14px;">Update</a>
+
+		{{pass}}
