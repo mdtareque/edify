@@ -5,9 +5,15 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel">
-		<a class="btn btn-success" href="auth_user">Users</a>
-		<a class="btn btn-success" href="course">Courses</a>
-		<a class="btn btn-success" href="verify_faculty">Verify Faculty</a>
+		<a class="btn btn-success" style="margin-top: 15px;" href="{{=URL('default','admin/auth_user')}}">Users</a>
+		<a class="btn btn-success" style="margin-top: 15px;" href="{{=URL('default','admin/course')}}">Courses</a>
+		<a class="btn btn-success" style="margin-top: 15px;"  href="{{=URL('default','admin/verify_faculty')}}">Verify Faculty</a>
+		<a class="btn btn-success" style="margin-top: 15px;"  href="{{=URL('default','admin/course_registration')}}">Course Registration</a>
+		<a class="btn btn-success" style="margin-top: 15px;"  href="{{=URL('default','admin/course_ta')}}">Course TA</a>
+		<a class="btn btn-success" style="margin-top: 15px;"  href="{{=URL('default','admin/course_assignments')}}">Course Assignments</a>
+		<a class="btn btn-success" style="margin-top: 15px;"  href="{{=URL('default','admin/course_resources')}}">Course Resources</a>
+		<a class="btn btn-success" style="margin-top: 15px;"  href="{{=URL('default','admin/course_assignment_upload')}}">Course Assignment Upload</a>
+		<a class="btn btn-success" style="margin-top: 15px;"  href="{{=URL('default','admin/activity')}}">Activity</a>
 		</div>
 	</div>
 </div>
@@ -21,6 +27,37 @@
 <hr>
 {{=course_table}}
 {{pass}}
+{{ if course_registration_table :}}
+<h3>Course Registration</h3>
+<hr>
+{{=course_registration_table}}
+{{pass}}
+{{ if course_ta_table :}}
+<h3>Course TA</h3>
+<hr>
+{{=course_ta_table}}
+{{pass}}
+{{ if course_assignments_table :}}
+<h3>Course Assignments</h3>
+<hr>
+{{=course_assignments_table}}
+{{pass}}
+{{ if course_resources_table :}}
+<h3>Course resources</h3>
+<hr>
+{{=course_resources_table}}
+{{pass}}
+{{ if course_assignment_upload_table :}}
+<h3>Course Assignment Upload</h3>
+<hr>
+{{=course_assignment_upload_table}}
+{{pass}}
+{{ if activity_table :}}
+<h3>Activity</h3>
+<hr>
+{{=activity_table}}
+{{pass}}
+
 {{ if verify_grid != None:}}
 <div class="row">
 	<div class="col-md-6">

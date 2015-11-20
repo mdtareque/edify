@@ -20,7 +20,7 @@ def index():
     """
     #response.flash = T("Hello World")
     if auth.user :
-        redirect("home")
+        redirect(URL("default","home"))
     message="Welcome to Edify!"
     return locals()#dict(message=T('Welcome to web2py!'))
 
@@ -30,6 +30,12 @@ def admin():
         redirect("home")
     user_table = None
     course_table = None
+    course_ta_table = None
+    course_registration_table = None
+    course_resources_table = None
+    course_assignments_table = None
+    course_assignment_upload_table = None
+    activity_table= None
     verify_grid = None
     rows = None
     if request.args(0) == "auth_user":
@@ -45,6 +51,19 @@ def admin():
             verify_grid = -1
         else:
             verify_grid = len(rows)
+    elif request.args(0) == "course_ta":
+        course_ta_table = SQLFORM.smartgrid(db.course_ta)
+    elif request.args(0) == "course_registration":
+        course_registration_table = SQLFORM.smartgrid(db.course_registration)
+    elif request.args(0) == "course_resources":
+        course_resources_table = SQLFORM.smartgrid(db.course_resources)
+    elif request.args(0) == "course_assignments":
+        course_assignments_table = SQLFORM.smartgrid(db.course_assignments)
+    elif request.args(0) == "course_assignment_upload":
+        course_assignment_upload_table = SQLFORM.smartgrid(db.course_assignment_upload)
+    elif request.args(0) == "activity":
+        activity_table = SQLFORM.smartgrid(db.activity)
+
     return locals()
 
 @auth.requires_login()
@@ -94,11 +113,17 @@ def home():
             course_ids = set([ i.cid for i in my_courses ])            
             if(len(my_ta_courses) != 0):
                 my_ta_courses2 = db((db.course_ta.sid == user_id) & (db.course_ta.approval == 'yes')).select()
+                ta_course_ids = set()
                 for i in my_ta_courses2:
-                    course_ids.add(i.cid)                    
-                query1  = (db.activity.activity_scope.belongs(['all','ta']) ) & (db.activity.cid.belongs(course_ids))
-                query2 = (db.activity.activity_scope.belongs(['student']) )& (db.activity.sid == auth.user.id)
-                activities = db(query1 | query2 ).select(orderby=~db.activity.publish_date,limitby=(0, 10))
+                    ta_course_ids.add(i.cid)                    
+                query1  = ((db.activity.activity_scope.belongs(['all']) ) & (db.activity.cid.belongs(course_ids)))
+                query3 = ((db.activity.activity_scope.belongs(['ta']) ) & (db.activity.cid.belongs(ta_course_ids)))
+                query2 = ((db.activity.activity_scope.belongs(['student']) )& (db.activity.sid == auth.user.id))
+                activities = db(query1 | query2 | query3 ).select(orderby=~db.activity.publish_date,limitby=(0, 10))
+                #activities = db(query1).select(orderby=~db.activity.publish_date,limitby=(0, 10))
+                #activities2 = db(query2).select(orderby=~db.activity.publish_date,limitby=(0, 10))
+                #activities = activities | activities2
+
             else:
                 query1  = (db.activity.activity_scope.belongs(['all']) ) & (db.activity.cid.belongs(course_ids))
                 query2 = (db.activity.activity_scope.belongs(['student']) )& (db.activity.sid == auth.user.id)
@@ -122,7 +147,9 @@ def user():
         @auth.requires_permission('read','table name',record_id)
     to decorate functions that need access control
     """
-    #if request.args(0) == 'register':    
+    auth.settings.mailer = mail
+    if request.args(0) == 'profile':
+        redirect(URL("default","profile"))    
     return dict(form=auth())
 
 def register():
@@ -137,7 +164,25 @@ def register():
     form=auth.register()
     return locals()
 
+@auth.requires_login()
+def profile():
+    def validate_email(form):
+        email_id = form.vars.email
+        at_i = email_id.find("@")
+        dom = email_id[at_i:]
+        if(dom != "@students.iiit.ac.in"):
+            form.errors["email"] = "Invalid email: only students mail id's are accepted"
+    auth.settings.profile_onvalidation.append(validate_email)
+    db.auth_user.role.readable =False 
+    db.auth_user.role.writable = False
+    db.auth_user.email.readable =False 
+    db.auth_user.email.writable = False
+    db.auth_user.admin_verified.readable =False 
+    db.auth_user.admin_verified.writable = False
+    form=auth.profile()    
+    return locals()
 
+@auth.requires_login()
 @cache.action()
 def download():
     """
@@ -155,5 +200,3 @@ def call():
     supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
     """
     return service()
-
-

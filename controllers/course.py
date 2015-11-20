@@ -10,6 +10,7 @@ def index():
     start = page*POST_PER_PAGE
     stop = start + POST_PER_PAGE
     rows = db(db.course).select(limitby=(start, stop))
+    count = len(db(db.course).select())
     for row in rows:
       courses.append([row.name, row.faculty.first_name + " " +  row.faculty.last_name, row.id])
     return locals()
@@ -22,6 +23,7 @@ def index_search():
     stop = start + POST_PER_PAGE
     search_query = request.vars.search_courses
     rows = db(db.course.name.like('%'+search_query+'%')).select(limitby=(start, stop))
+    count = len(db(db.course.name.like('%'+search_query+'%')).select())
     for row in rows:
         courses.append([row.name, row.faculty.first_name + " " +  row.faculty.last_name, row.id])
     return locals()
@@ -185,6 +187,8 @@ def main():
 
 @auth.requires_login()
 def approve_ta():
+	if auth.user.role != "faculty":
+		return "invalid request"
 	ta_id =request.args(0)
 	ta_requests = db((db.course_ta.id == ta_id)).select()
 	if(len(ta_requests) == 0):
@@ -192,7 +196,7 @@ def approve_ta():
 	else:
 		db((db.course_ta.id == ta_id)).update(approval='yes')
 		db.activity.insert(cid=ta_requests[0].cid, sid=auth.user.id, 
-			description=auth.user.first_name+" "+auth.user.last_name+" approved your TAship request for "+ta_requests[0].cid.name+" course.",
+			description=auth.user.first_name+" "+auth.user.last_name+" approved TAship request of "+ta_requests[0].sid.first_name+" "+ta_requests[0].sid.last_name+" for "+ta_requests[0].cid.name+" course.",
 			activity_scope="ta"
 			)
 		session.flash = "TA request accepted successfully"
@@ -201,6 +205,8 @@ def approve_ta():
 
 @auth.requires_login()
 def reject_ta():
+	if auth.user.role != "faculty":
+		return "invalid request"
 	ta_id =request.args(0)
 	ta_requests = db((db.course_ta.id == ta_id)).select()
 	if(len(ta_requests) == 0):
@@ -485,12 +491,17 @@ def update_course_marks():
 			db(db.course_registration.id == arr[1]).update(sem=data[key]);
 	return "alert('Content updated successfully')";
 		
-
-
-
-
-
-
-
-
-
+@auth.requires_login()
+def feedback():
+	data = request.vars.feedback
+	course_id = request.args(0)
+	course = db.course(course_id)
+	if(course and data):
+		to_id = [course.faculty.email]
+		to_id.append('adityagaykar@gmail.com') #course.faculty.email		
+		sub = 'Edify: Feedback from '+auth.user.first_name+' '+auth.user.last_name+' for course '+course.name
+		mail.send(to=to_id,subject=sub,message=data)
+		#mail.send(to=['subash.k3110@gmail.com'],subject='test',message='hello'):
+		return "alert('Feeback sent successfully.')";
+	else:
+		return "alert('Error: invalid args')";

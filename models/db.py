@@ -73,9 +73,9 @@ auth.define_tables(username=False, signature=False)
 
 ## configure email
 mail = auth.settings.mailer
-mail.settings.server = 'logging' if request.is_local else myconf.take('smtp.server')
-mail.settings.sender = myconf.take('smtp.sender')
-mail.settings.login = myconf.take('smtp.login')
+mail.settings.server = 'smtp.gmail.com:587'#'logging' if request.is_local else myconf.take('smtp.server')
+mail.settings.sender = 'adityagaykar@gmail.com'#myconf.take('smtp.sender')
+mail.settings.login = "adityagaykar@gmail.com:mkfbcafoalavcfgl"#myconf.take('smtp.login')
 
 ## configure auth policy
 auth.settings.registration_requires_verification = False
@@ -83,7 +83,7 @@ auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = False
 
 #db.auth.auth_user.phone.requires = IS_NOT_EMPTY(error_message=auth.messages.is_empty)
-
+#auth.settings.profile_url = URL('default','profile')
 
 #########################################################################
 ## Define your tables below (or better in another model file) for example

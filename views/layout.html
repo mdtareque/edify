@@ -69,7 +69,8 @@
         {{pass}}
         {{if auth.user and auth.user.role=='Admin':}}
           <ul class="nav navbar-nav navbar-right">
-            <li>{{=A("Admin", _href="/edify/default/admin/")}}</li>
+            <!-- <li>{{=A("Admin", _href=URL('default','admin'))}}</li> -->
+            <li><a href="{{=URL('default','admin')}}">Admin</a></li>
           </ul>
         {{pass}}
           {{if response.menu and auth.user:}}

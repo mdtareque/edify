@@ -31,7 +31,7 @@
 						{{if auth.user.id == faculty:}}							
 							<a href="#" onclick="ajax('{{=URL('course','approvals/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-transfer"></div> TA Approvals</a>							
 						{{else:}}
-							<!-- <a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal"><div class="glyphicon glyphicon-info-sign"></div> Feedback</a> -->
+							<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal"><div class="glyphicon glyphicon-info-sign"></div> Feedback</a>
 						{{pass}}
 						{{pass}}
 
@@ -42,7 +42,7 @@
 			<div class="panel  panel-primary" id="course-panel" style="min-height: 400px;">							
 				<div class="panel-heading"><div class="glyphicon glyphicon glyphicon-home"></div> Home				
 				</div>
-				<div class="panel-body">
+				<div class="panel-body" style="min-height: 350px;">
 				Overview
 				<hr>
 				<div id="content" {{ if has_edit_access == 1: }}contenteditable="true"{{pass}}>
@@ -51,10 +51,18 @@
 				
 				</div>
 				{{ if has_edit_access == 1: }}								
+				<div class="panel-footer">
+									<input type="hidden" value="" name = "hidediv" id="hidediv"/>
+									<a href="#" onclick='$("#hidediv").val($("#content").html());ajax("{{=URL("course","update_overview/"+str(course_id))}}", ["hidediv"],":eval")'
+									class="btn btn-success" style="/* position: absolute;right: 10px;bottom: -14px; */">Update</a>
+				</div>
+				{{pass}}
+<!-- 		
+				{{ if has_edit_access == 1: }}								
 				<input type="hidden" value="" name = "hidediv" id="hidediv"/>
 					<a href="#" onclick='$("#hidediv").val($("#content").html());ajax("{{=URL("course","update_overview/"+str(course_id))}}", ["hidediv"],":eval")'
 					class="btn btn-success" style="    position: absolute;right: 10px;bottom: -14px;">Update</a>
-				{{pass}}
+				{{pass}} -->
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -101,12 +109,12 @@
 					{{pass}}
 					</ul>
 					{{if auth.user.role != 'faculty' and auth.user.id != faculty and is_ta == 0 and registered != 0:}}							
-					<div class="panel panel-info">
+					<!-- <div class="panel panel-info">
                         <div class=" panel-heading"><div class="glyphicon glyphicon-hand-up"></div>  Attendance</div>
                         <div class="panel-body ">
                             <p style="text-align:center;vertical-align:middle" >95%</p>
                         </div>
-                    </div>
+                    </div> -->
             
             		{{pass}}
 			{{pass}}
@@ -118,21 +126,24 @@
 
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
+  <form>
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Feedback</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <textarea class="form-control" name="feedback" id="feedback" placeholder="Write you feedback here..." required></textarea>
+
+        
       </div>
       <div class="modal-footer">
+      	<input type="submit" value="Send" data-dismiss="modal" onclick=" ajax('{{=URL('course','feedback/'+str(course_id))}}',['feedback'],':eval');jQuery('#feedback').val(''); return false;" class="pull-left btn btn-success"/>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-
+    </form>
   </div>
 </div>
 

@@ -26,7 +26,7 @@ response.google_analytics_id = None
 
 response.menu = [
     (T('Home'), False, URL('default', 'index'), []),
-    (T('courses'), False, URL('course', 'index'), [])
+    (T('Courses'), False, URL('course', 'index'), [])
 ]
 
 DEVELOPMENT_MENU = False

@@ -1,4 +1,5 @@
 <div class="row">
+{{if len(courses) != 0:}}
 {{ for row in courses :}}
 
       <div class="col-sm-6 col-md-4">
@@ -21,20 +22,43 @@
             </div>
         </div>
     </div> -->
+    {{pass}}
+{{else:}}
+    <div class="col-md-4 col-md-offset-4">
+    <h4 class="center">No course found :(</h4>
+    </div>
 {{pass}}
 </div>
 
-<div class="row">
-    <div class="col-sm-3  col-md-4 col-md-offset-4 col-sm-offset-2 paginat">
+
+    <!-- <div class="col-sm-3  col-md-4 col-md-offset-4 col-sm-offset-2 paginat">
         <div class="paginate-wra">
             <div class="col-md-2">
 {{if page > 0:}}
-{{=A('previous', _class="disabled", _href=URL('course', 'index', args=(page-1)))}}
+{{=A('Previous', _href="#", _onclick="ajax('"+URL('course', 'index_search', args=(page-1))+"',['search_courses'],'target')")}}
 {{pass}}
             </div>
             <div class="col-md-2">
-{{if len(rows) >= 5:}}
-{{=A('next', _href=URL('course', 'index', args=(page+1)))}}
+{{if stop < count:}}
+{{=A('Next', _href="#", _onclick="ajax('"+URL('course', 'index_search', args=(page+1))+"',['search_courses'],'target')")}}
 {{pass}}
             </div>
-            </div>
+
+        </div>
+    </div> -->
+    <nav>
+  <ul class="pager">
+    <li class="previous {{if page <= 0:}} disabled {{pass}}">
+        <a href="#" onclick="!jQuery('.pager li.previous').hasClass('disabled') && ajax('{{=URL('course', 'index_search', args=(page-1))}}',['search_courses'],'target')">
+        <span aria-hidden="true">&larr;</span>Previous</a>
+    </li>
+    <li class="next {{if stop >= count:}}disabled{{pass}}">
+        <a href="#" onclick="!jQuery('.pager li.next').hasClass('disabled') && ajax('{{=URL('course', 'index_search', args=(page+1))}}',['search_courses'],'target')">
+        <span aria-hidden="true">&rarr;</span>Next</a>
+        
+    </li>
+  </ul>
+</nav>
+
+    
+
