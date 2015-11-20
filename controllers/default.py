@@ -93,6 +93,11 @@ def home():
     courses = None
     my_courses = None
     user_id = auth.user.id
+    # obj = [
+    # (T('Home2'), False, URL('default', 'index'), []),
+    # (T('Courses2'), False, URL('course', 'index'), [])
+    # ]
+    #{{response.menu.extend(obj)}}
     rows = db( (db.auth_user.id == user_id) & (db.auth_user.admin_verified == 'no') & (db.auth_user.role == 'faculty') ).select()
     if(len(rows) == 1):
         auth_error = "You are still awaiting faculty status approval, contact admin for more details "

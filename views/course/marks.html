@@ -1,8 +1,8 @@
 <div class="panel-heading">
-	<div class="glyphicon glyphicon-stats"></div> Marks
+  <div class="glyphicon glyphicon-stats"></div> Marks
 </div>
 <div class="panel-body">
-	
+  
 
 
 
@@ -13,8 +13,8 @@
    <div class="panel panel-default">
       <div class="panel-heading">Recent Marks Obtained</div>
       <div class="panel-body">
-
-     <table class="table table-responsive">
+    <div class="table-responsive">
+     <table class="table table-hover">
         <thead>
           <tr>
             <th>Exam</th>
@@ -42,15 +42,17 @@
           {{pass}}
         </tbody>
      </table>
+       </div>
      <!-- <div class="col-md-12">
-     	<img src="{{=URL('static','images/hist.png')}}">
+      <img src="{{=URL('static','images/hist.png')}}">
      </div>
      --></div>
   {{else:}}
     <h3>Upload marks</h3>
     <hr>
     {{if len(rows) != 0: }}
-      <table class="table table-responsive">
+       <div class="table-responsive">           
+      <table class="table table-hover">
         <thead>
           <tr>
             <th>Sr no</th>
@@ -83,6 +85,7 @@
               </tr>
         </tbody>
      </table>
+   </div>
   {{else:}}
       <p>No registered students</p>
   {{pass}}
