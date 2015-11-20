@@ -166,13 +166,6 @@ def register():
 
 @auth.requires_login()
 def profile():
-    def validate_email(form):
-        email_id = form.vars.email
-        at_i = email_id.find("@")
-        dom = email_id[at_i:]
-        if(dom != "@students.iiit.ac.in"):
-            form.errors["email"] = "Invalid email: only students mail id's are accepted"
-    auth.settings.profile_onvalidation.append(validate_email)
     db.auth_user.role.readable =False 
     db.auth_user.role.writable = False
     db.auth_user.email.readable =False 
