@@ -1,0 +1,5 @@
+course.id,course.name,course.faculty,course.course_type,course.course_year,course.course_description,course.mid1_max,course.mid2_max,course.sem_max
+65,Advanced Problem Solving,Balamurugan Selva (14),Monsoon,2015,Course on Advanced problem solving,25,25,100
+66,Machine Learning,Balamurugan Selva (14),Monsoon,2015,Course on Machine Learning,25,25,100
+67,Operating Systems,Balamurugan Selva (14),Monsoon,2015,"
+				Course on operating systems.",25,25,100

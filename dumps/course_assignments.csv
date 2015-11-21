@@ -1,0 +1,2 @@
+course_assignments.id,course_assignments.cid,course_assignments.sid,course_assignments.total_marks,course_assignments.marks,course_assignments.title,course_assignments.attachment,course_assignments.deadline,course_assignments.upload_date
+12,67,Aditya Gaykar (1),50,<NULL>,Assignment 5 : CPU Scheduling,course_assignments.attachment.b76737e298650635.41737369676e6d656e74352e706466.pdf,2015-11-22 00:00:00,2015-11-19 17:49:08

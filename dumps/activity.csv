@@ -1,0 +1,87 @@
+activity.id,activity.cid,activity.sid,activity.description,activity.publish_date,activity.activity_scope
+65,65,Aditya Gaykar (1),You registered for Advanced Problem Solving course.,2015-11-19 16:43:08,student
+66,66,Aditya Gaykar (1),Aditya Gaykar requested for TAship for Machine Learning course.,2015-11-19 16:58:19,faculty
+67,66,Aditya Gaykar (1),You requested for TAship for Machine Learning course.,2015-11-19 16:58:19,student
+68,66,Balamurugan Selva (14),Balamurugan Selva approved TAship request of Karan Chandani for Machine Learning course.,2015-11-19 17:00:26,ta
+69,65,gaurav kumar (19),You registered for Advanced Problem Solving course.,2015-11-19 17:13:09,student
+70,65,Madhudeep Petwal (20),You registered for Advanced Problem Solving course.,2015-11-19 17:13:37,student
+71,65,Balamurugan Selva (14),"Balamurugan Selva uploaded new resource, ""Resource 1"" for Advanced Problem Solving course.",2015-11-19 17:17:25,all
+72,65,Akanksha Singh (23),You registered for Advanced Problem Solving course.,2015-11-19 17:18:11,student
+73,65,Balamurugan Selva (14),"Balamurugan Selva deleted resource, ""Resource 1"" for Advanced Problem Solving course.",2015-11-19 17:20:28,all
+74,65,Balamurugan Selva (14),"Balamurugan Selva uploaded new assignment, ""Assignment 1"" for Advanced Problem Solving course.",2015-11-19 17:21:04,all
+75,65,Shweta Verma (24),You registered for Advanced Problem Solving course.,2015-11-19 17:23:30,student
+76,65,Rashi Chauhan (25),You registered for Advanced Problem Solving course.,2015-11-19 17:28:15,student
+77,66,Rashi Chauhan (25),You registered for Machine Learning course.,2015-11-19 17:31:53,student
+78,66,mak mak (27),You registered for Machine Learning course.,2015-11-19 17:38:16,student
+79,65,mak mak (27),mak mak requested for TAship for Advanced Problem Solving course.,2015-11-19 17:38:34,faculty
+80,65,mak mak (27),You requested for TAship for Advanced Problem Solving course.,2015-11-19 17:38:34,student
+81,65,karan chandnani (28),You registered for Advanced Problem Solving course.,2015-11-19 17:42:10,student
+82,67,Aditya Gaykar (1),Aditya Gaykar requested for TAship for Operating Systems course.,2015-11-19 17:43:47,faculty
+83,67,Aditya Gaykar (1),You requested for TAship for Operating Systems course.,2015-11-19 17:43:47,student
+84,66,karan chandnani (28),karan chandnani requested for TAship for Machine Learning course.,2015-11-19 17:44:23,faculty
+85,66,karan chandnani (28),You requested for TAship for Machine Learning course.,2015-11-19 17:44:23,student
+86,66,Balamurugan Selva (14),Balamurugan Selva approved TAship request of Aditya Gaykar for Machine Learning course.,2015-11-19 17:46:23,ta
+87,67,Balamurugan Selva (14),Balamurugan Selva approved TAship request of Subash Chandra for Operating Systems course.,2015-11-19 17:46:58,ta
+88,67,Aditya Gaykar (1),"Aditya Gaykar uploaded new assignment, ""Assignment 5 : CPU Scheduling"" for Operating Systems course.",2015-11-19 17:49:08,all
+89,65,Balamurugan Selva (14),"Balamurugan Selva deleted assignment, ""Assignment 1"" for Advanced Problem Solving course.",2015-11-19 17:51:11,all
+90,65,Balamurugan Selva (14),"Balamurugan Selva uploaded new resource, ""Computational Thinking"" for Advanced Problem Solving course.",2015-11-19 17:52:25,all
+91,67,yo yo (29),You registered for Operating Systems course.,2015-11-19 17:54:16,student
+92,67,yo yo (29),You left Operating Systems course.,2015-11-19 17:54:38,student
+93,65,kishan vadaliya (30),kishan vadaliya requested for TAship for Advanced Problem Solving course.,2015-11-19 18:01:21,faculty
+94,65,kishan vadaliya (30),You requested for TAship for Advanced Problem Solving course.,2015-11-19 18:01:21,student
+95,65,kishan vadaliya (30),kishan vadaliya left TAship for Advanced Problem Solving course.,2015-11-19 18:01:30,faculty
+96,65,kishan vadaliya (30),You left TAship for Advanced Problem Solving course.,2015-11-19 18:01:30,student
+97,65,kishan vadaliya (30),You registered for Advanced Problem Solving course.,2015-11-19 18:01:33,student
+98,65,kishan vadaliya (30),You left Advanced Problem Solving course.,2015-11-19 18:02:52,student
+99,66,Subash Chandra (31),You registered for Machine Learning course.,2015-11-19 18:05:26,student
+100,67,Subash Chandra (31),Subash Chandra requested for TAship for Operating Systems course.,2015-11-19 18:05:47,faculty
+101,67,Subash Chandra (31),You requested for TAship for Operating Systems course.,2015-11-19 18:05:47,student
+102,66,Subash Chandra (31),You left Machine Learning course.,2015-11-19 18:06:37,student
+103,66,Subash Chandra (31),You registered for Machine Learning course.,2015-11-19 18:06:56,student
+104,67,Ayush Khandelwal (32),You registered for Operating Systems course.,2015-11-19 18:10:12,student
+105,67,Kalpish Singhal (33),You registered for Operating Systems course.,2015-11-19 18:10:42,student
+106,67,Praveen yadav (34),Praveen yadav requested for TAship for Operating Systems course.,2015-11-19 18:11:02,faculty
+107,67,Praveen yadav (34),You requested for TAship for Operating Systems course.,2015-11-19 18:11:02,student
+108,67,Kalpish Singhal (33),You left Operating Systems course.,2015-11-19 18:11:30,student
+109,67,Kalpish Singhal (33),Kalpish Singhal requested for TAship for Operating Systems course.,2015-11-19 18:11:35,faculty
+110,67,Kalpish Singhal (33),You requested for TAship for Operating Systems course.,2015-11-19 18:11:35,student
+111,66,sonam gupta (35),sonam gupta requested for TAship for Machine Learning course.,2015-11-19 18:12:46,faculty
+112,66,sonam gupta (35),You requested for TAship for Machine Learning course.,2015-11-19 18:12:46,student
+113,66,sonam gupta (35),sonam gupta left TAship for Machine Learning course.,2015-11-19 18:12:53,faculty
+114,66,sonam gupta (35),You left TAship for Machine Learning course.,2015-11-19 18:12:53,student
+115,67,Balamurugan Selva (14),Balamurugan Selva approved TAship request of Aditya Gaykar for Operating Systems course.,2015-11-19 18:16:27,ta
+116,67,Balamurugan Selva (14),Balamurugan Selva approved TAship request of Praveen yadav for Operating Systems course.,2015-11-19 18:38:41,ta
+117,65,Balamurugan Selva (14),Balamurugan Selva approved TAship request of mak mak for Advanced Problem Solving course.,2015-11-19 18:42:57,ta
+118,65,Aditya Gaykar (1),You left Advanced Problem Solving course.,2015-11-19 18:45:00,student
+119,65,Aditya Gaykar (1),You registered for Advanced Problem Solving course.,2015-11-19 18:45:15,student
+120,65,Utsav Chokshi (38),You registered for Advanced Problem Solving course.,2015-11-19 18:56:12,student
+121,65,sravani simhadri (39),You registered for Advanced Problem Solving course.,2015-11-19 19:03:41,student
+122,65,sravani simhadri (39),You left Advanced Problem Solving course.,2015-11-19 19:04:25,student
+123,66,Harsh Jain (41),You registered for Machine Learning course.,2015-11-19 19:38:59,student
+124,65,Kuldeep Kumar (42),You registered for Advanced Problem Solving course.,2015-11-19 19:39:17,student
+125,65,Harsh Jain (41),You registered for Advanced Problem Solving course.,2015-11-19 19:39:36,student
+126,65,Harsh Jain (41),You left Advanced Problem Solving course.,2015-11-19 19:40:30,student
+127,66,vanaja penumatsa (21),vanaja penumatsa requested for TAship for Machine Learning course.,2015-11-19 21:08:05,faculty
+128,66,vanaja penumatsa (21),You requested for TAship for Machine Learning course.,2015-11-19 21:08:05,student
+129,66,vanaja penumatsa (21),vanaja penumatsa left TAship for Machine Learning course.,2015-11-19 21:08:29,faculty
+130,66,vanaja penumatsa (21),You left TAship for Machine Learning course.,2015-11-19 21:08:29,student
+131,66,Ruchir sharma (44),You registered for Machine Learning course.,2015-11-20 06:29:18,student
+132,65,Romil Punetha (45),You registered for Advanced Problem Solving course.,2015-11-20 08:07:09,student
+133,66,free freedom (48),You registered for Machine Learning course.,2015-11-20 20:07:33,student
+134,66,free freedom (48),You left Machine Learning course.,2015-11-20 20:08:55,student
+135,66,free freedom (48),free freedom requested for TAship for Machine Learning course.,2015-11-20 20:09:01,faculty
+136,66,free freedom (48),You requested for TAship for Machine Learning course.,2015-11-20 20:09:01,student
+137,67,Balamurugan Selva (14),Balamurugan Selva approved TAship request of Kalpish Singhal for Operating Systems course.,2015-11-20 20:11:36,ta
+138,66,Balamurugan Selva (14),Balamurugan Selva approved TAship request of free freedom for Machine Learning course.,2015-11-20 20:11:49,ta
+139,65,Munmun Chowdhury (49),Munmun Chowdhury requested for TAship for Advanced Problem Solving course.,2015-11-20 22:42:41,faculty
+140,65,Munmun Chowdhury (49),You requested for TAship for Advanced Problem Solving course.,2015-11-20 22:42:41,student
+141,65,Munmun Chowdhury (49),Munmun Chowdhury left TAship for Advanced Problem Solving course.,2015-11-20 22:42:45,faculty
+142,65,Munmun Chowdhury (49),You left TAship for Advanced Problem Solving course.,2015-11-20 22:42:45,student
+143,67,abc Jain (51),abc Jain requested for TAship for Operating Systems course.,2015-11-21 00:33:54,faculty
+144,67,abc Jain (51),You requested for TAship for Operating Systems course.,2015-11-21 00:33:54,student
+145,67,abc Jain (51),abc Jain left TAship for Operating Systems course.,2015-11-21 00:34:12,faculty
+146,67,abc Jain (51),You left TAship for Operating Systems course.,2015-11-21 00:34:12,student
+147,65,vinay s (52),You registered for Advanced Problem Solving course.,2015-11-21 12:58:18,student
+148,66,vinay s (52),You registered for Machine Learning course.,2015-11-21 12:58:59,student
+149,66,vinay s (52),vinay s requested for TAship for Machine Learning course.,2015-11-21 12:59:01,faculty
+150,66,vinay s (52),You requested for TAship for Machine Learning course.,2015-11-21 12:59:01,student
