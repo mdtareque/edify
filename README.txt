@@ -6,16 +6,18 @@ Users are categoried as "admin", "student" and "faculty".
 
 There are seperate user interfaces for student and faculty.
 
-pythonanywhere_details: {
-	url : "https://adityagaykar.pythonanywhere.com/edify/",
-	logins : {
-		"admin" : { 
-			"email" : "gaykar.aditya@students.iiit.ac.in",
-			"password" : "test1234"
-		 },
-		"faculty" : { 
-			"email" : "baluselva@live.com",
-			"password" : "test"
+{	
+	"pythonanywhere_details" : {
+		"url" : "https://adityagaykar.pythonanywhere.com/edify/",
+		"logins" : {
+			"admin" : { 
+				"email" : "gaykar.aditya@students.iiit.ac.in",
+				"password" : "test1234"
+			 },
+			"faculty" : { 
+				"email" : "baluselva@live.com",
+				"password" : "test"
+			}
 		}
 	}
 }
