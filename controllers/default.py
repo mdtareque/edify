@@ -122,7 +122,7 @@ def home():
                 for i in my_ta_courses2:
                     ta_course_ids.add(i.cid)                    
                 query1  = ((db.activity.activity_scope.belongs(['all']) ) & (db.activity.cid.belongs(course_ids)))
-                query3 = ((db.activity.activity_scope.belongs(['ta']) ) & (db.activity.cid.belongs(ta_course_ids)))
+                query3 = ((db.activity.activity_scope.belongs(['ta','all']) ) & (db.activity.cid.belongs(ta_course_ids)))
                 query2 = ((db.activity.activity_scope.belongs(['student']) )& (db.activity.sid == auth.user.id))
                 activities = db(query1 | query2 | query3 ).select(orderby=~db.activity.publish_date,limitby=(0, 10))
                 #activities = db(query1).select(orderby=~db.activity.publish_date,limitby=(0, 10))
