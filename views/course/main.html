@@ -5,21 +5,21 @@
 {{ if message :}}
 <h3>{{=message}}
 			<!-- {{if registered == 0:}}
-				{{=A("Enroll", _href=URL("course","register/"+str(course_id)), _class="btn btn-success pull-right")}}	
+				{{=A("Enroll", _href=URL("course","register/"+str(course_id)), _class="btn btn-success pull-right")}}
 			{{else:}}
 				{{=A("Withdraw", _href=URL("course","unregister/"+str(course_id)), _class="btn btn-danger pull-right")}}
 			{{pass}}
 			{{ if is_ta == 0:}}
-				{{=A("Apply for TA", _href=URL("course","ta_register/"+str(course_id)), _class="btn btn-success pull-right")}}	
+				{{=A("Apply for TA", _href=URL("course","ta_register/"+str(course_id)), _class="btn btn-success pull-right")}}
 			{{else:}}
-				{{=A("Withdraw TAship", _href=URL("course","ta_unregister/"+str(course_id)), _class="btn btn-danger pull-right")}}	
+				{{=A("Withdraw TAship", _href=URL("course","ta_unregister/"+str(course_id)), _class="btn btn-danger pull-right")}}
 			{{pass}} -->
 </h3>
 {{pass}}
 <hr>
 
 <div class="row">
-		<div class="col-md-2">			
+		<div class="col-md-2">
 					<div class="list-group">
 						<a href="#" onclick="ajax('{{=URL('course','home/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-home"></div> Home</a>
 						{{if registered or is_ta_approved or auth.user.id == faculty:}}
@@ -27,20 +27,20 @@
 						<a href="#" onclick="ajax('{{=URL('course','resources/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-list-alt"></div> Resources</a>
 						<a href="#" onclick="ajax('{{=URL('course','upload/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-upload"></div> Upload</a>
 						<a href="#" onclick="ajax('{{=URL('course','marks/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-stats"></div> Marks</a>
-						
-						{{if auth.user.id == faculty:}}							
-							<a href="#" onclick="ajax('{{=URL('course','approvals/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-transfer"></div> TA Approvals</a>							
+
+						{{if auth.user.id == faculty:}}
+							<a href="#" onclick="ajax('{{=URL('course','approvals/'+str(course_id))}}',[],'course-panel')" cid="{{=course_id}}" class="list-group-item"><div class="glyphicon glyphicon-transfer"></div> TA Approvals</a>
 						{{else:}}
 							<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal"><div class="glyphicon glyphicon-info-sign"></div> Feedback</a>
 						{{pass}}
 						{{pass}}
 
 					</div>
-								
+
 		</div>
 		<div class="col-md-8">
-			<div class="panel  panel-primary" id="course-panel" style="min-height: 400px;">							
-				<div class="panel-heading"><div class="glyphicon glyphicon glyphicon-home"></div> Home				
+			<div class="panel  panel-primary" id="course-panel" style="min-height: 400px;">
+				<div class="panel-heading"><div class="glyphicon glyphicon glyphicon-home"></div> Home
 				</div>
 				<div class="panel-body" style="min-height: 350px;">
 				Overview
@@ -48,17 +48,17 @@
 				<div id="content" {{ if has_edit_access == 1: }}contenteditable="true"{{pass}}>
 				{{=XML(course_description)}}
 				</div>
-				
+
 				</div>
-				{{ if has_edit_access == 1: }}								
+				{{ if has_edit_access == 1: }}
 				<div class="panel-footer">
 									<input type="hidden" value="" name = "hidediv" id="hidediv"/>
 									<a href="#" onclick='$("#hidediv").val($("#content").html());ajax("{{=URL("course","update_overview/"+str(course_id))}}", ["hidediv"],":eval")'
 									class="btn btn-success" style="/* position: absolute;right: 10px;bottom: -14px; */">Update</a>
 				</div>
 				{{pass}}
-<!-- 		
-				{{ if has_edit_access == 1: }}								
+<!--
+				{{ if has_edit_access == 1: }}
 				<input type="hidden" value="" name = "hidediv" id="hidediv"/>
 					<a href="#" onclick='$("#hidediv").val($("#content").html());ajax("{{=URL("course","update_overview/"+str(course_id))}}", ["hidediv"],":eval")'
 					class="btn btn-success" style="    position: absolute;right: 10px;bottom: -14px;">Update</a>
@@ -66,24 +66,24 @@
 			</div>
 		</div>
 		<div class="col-md-2">
-			
+
 					<ul class="list-group">
 					<a href="#" class="list-group-item list-group-item-info"><div class="glyphicon glyphicon-user"></div> Staff</a>
-					<a href="#" class="list-group-item">																
-						<div class="glyphicon glyphicon glyphicon-queen"></div>									
-						{{=instructor}}												
+					<a href="#" class="list-group-item">
+						<div class="glyphicon glyphicon glyphicon-queen"></div>
+						{{=instructor}}
 					</a>
-					{{for ta in tas:}}						
+					{{for ta in tas:}}
 						<a href="#" class="list-group-item"><div class="glyphicon glyphicon glyphicon-knight"></div> {{=ta.sid.first_name}} {{=ta.sid.last_name}}</a>
 					{{pass}}
 					</ul>
-			{{if auth.user.role != 'faculty' and auth.user.id != faculty:}}							
+			{{if auth.user.role != 'faculty' and auth.user.id != faculty:}}
 					<ul class="list-group">
 					<!-- <a href="#" class="list-group-item list-group-item-danger"><div class="glyphicon glyphicon-export"></div> Course</a> -->
-					<!-- <a href="#" class="list-group-item">																
-						<div class="glyphicon glyphicon glyphicon-queen"></div>									
-						{{=instructor}}												
-					</a>	 -->				
+					<!-- <a href="#" class="list-group-item">
+						<div class="glyphicon glyphicon glyphicon-queen"></div>
+						{{=instructor}}
+					</a>	 -->
 					{{if is_ta == 0:}}
 						{{if registered == 0:}}
 							<!-- {{=A('Enroll', _href=URL("course","register/"+str(course_id)), _class="list-group-item btn btn-danger")}}	 -->
@@ -91,9 +91,9 @@
 						{{else:}}
 							<!-- {{=A("Leave course", _href=URL("course","unregister/"+str(course_id)), _class="list-group-item")}}-->
 							<a href='{{=URL("course","unregister/"+str(course_id))}}' class="list-group-item list-group-item-danger"><div class="glyphicon glyphicon-export"></div> Leave course</a>
-						{{pass}} 
+						{{pass}}
 					{{pass}}
-					{{ if registered == 0:}}						
+					{{ if registered == 0:}}
 						{{ if is_ta == 0:}}
 							<!-- {{=A("Apply for TA", _href=URL("course","ta_register/"+str(course_id)), _class="list-group-item")}}	 -->
 							<a href='{{=URL("course","ta_register/"+str(course_id))}}' class="list-group-item list-group-item-success"><div class="glyphicon glyphicon-import"></div> Apply for TAship</a>
@@ -105,22 +105,22 @@
 							<a href='#' class="list-group-item list-group-item-warning"><div class="glyphicon glyphicon-time"></div> Pending TAship</a>
 							<a href='{{=URL("course","ta_unregister/"+str(course_id))}}' class="list-group-item list-group-item-danger"><div class="glyphicon glyphicon-export"></div> Cancel TAship</a>
 						{{pass}}
-						{{pass}}						
+						{{pass}}
 					{{pass}}
 					</ul>
-					{{if auth.user.role != 'faculty' and auth.user.id != faculty and is_ta == 0 and registered != 0:}}							
+					{{if auth.user.role != 'faculty' and auth.user.id != faculty and is_ta == 0 and registered != 0:}}
 					<!-- <div class="panel panel-info">
                         <div class=" panel-heading"><div class="glyphicon glyphicon-hand-up"></div>  Attendance</div>
                         <div class="panel-body ">
                             <p style="text-align:center;vertical-align:middle" >95%</p>
                         </div>
                     </div> -->
-            
+
             		{{pass}}
 			{{pass}}
-				
-		</div>	
-			
+
+		</div>
+
 	</div>
 {{pass}}
 
@@ -134,12 +134,19 @@
         <h4 class="modal-title">Feedback</h4>
       </div>
       <div class="modal-body">
+        <label for="query"> Select feedback type:</label>
+        <select name="query">
+            <option value="course-material-query">Problem in course material</option>
+            <option value="course-protal-issue">Issue with course portal</option>
+            <option value="general-feedback">General feedback about course</option>
+            <option value="other-query">Other</option>
+        </select>
         <textarea class="form-control" name="feedback" id="feedback" placeholder="Write you feedback here..." required></textarea>
 
-        
+
       </div>
       <div class="modal-footer">
-      	<input type="submit" value="Send" data-dismiss="modal" onclick=" ajax('{{=URL('course','feedback/'+str(course_id))}}',['feedback'],':eval');jQuery('#feedback').val(''); return false;" class="pull-left btn btn-success"/>
+      	<input type="submit" value="Send" data-dismiss="modal" onclick=" ajax('{{=URL('course','feedback/'+str(course_id))}}',['feedback', 'query'],':eval');jQuery('#feedback').val(''); return false;" class="pull-left btn btn-success"/>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

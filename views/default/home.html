@@ -24,37 +24,37 @@
 												</div>
 											{{else:}}
 												<div class="col-md-1">
-														
+
 												</div>
 												<div class="col-md-11 " style="border-left: 1px solid #DEDEDE;padding-left:0">
 												{{for activity in activities:}}
 													<div class="" >
-																
+
 																<div class="list-group-item list-group-item-info" style="border-top-left-radius: 20px; padding-left: 20px; margin-left:20px;margin-top:20px;
 												    border-bottom-left-radius: 20px;">
-												    				<div class="glyphicon glyphicon-plus-sign" style="position:relative; left: -48px" title="updated on {{=activity.publish_date}}"></div>				
-																	<div class="glyphicon glyphicon-option-horizontal" style="position:relative; left: -52px"></div>								
+												    				<div class="glyphicon glyphicon-plus-sign" style="position:relative; left: -48px" title="updated on {{=activity.publish_date}}"></div>
+																	<div class="glyphicon glyphicon-option-horizontal" style="position:relative; left: -52px"></div>
 																	<div style="display:inline;margin-left: -35px">{{=activity.description}}</div>
 																</div>
 													</div>
-																		
+
 												{{pass}}
 												</div>
 											{{pass}}
 								</div>
 							</div>
-			</div>			
+			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="panel panel-primary">
 							<div class="panel-heading">
 								<h3 class="panel-title"><div class="glyphicon glyphicon-list"></div> Manage your courses</h3>
 							</div>
-							<div class="panel-body">							
+							<div class="panel-body">
 									{{if len(courses) != 0:}}
 										<!-- <ul class="list-group"> -->
 										{{ for course in courses:}}
-											
+
 												<li class="list-group-item">
 												<div class="row">
 													<div class="col-md-6">
@@ -66,20 +66,20 @@
 												</div>
 												<!-- <p>{{=course.name}}<span class="right"></span></p>-->
 												</li>
-											
+
 										{{pass}}
 										<!-- </ul> -->
 									{{else:}}
 										<p class="list-group-item">No courses are registered under you</p>
 									{{pass}}
 							</div>
-			</div>			
+			</div>
 		</div>
-	
+
 	{{pass}}
 
 	{{ if my_courses != None: }}
-	
+
 		<div class="col-md-6">
 			<div class="panel panel-primary" style="min-height: 450px;">
 							<div class="panel-heading">
@@ -93,26 +93,26 @@
 										</div>
 									{{else:}}
 										<div class="col-md-1">
-												
+
 										</div>
 										<div class="col-md-11 " style="border-left: 1px solid #DEDEDE;padding-left:0">
 										{{for activity in activities:}}
 											<div class="" >
-														
+
 														<div class="list-group-item list-group-item-info" style="border-top-left-radius: 20px; padding-left: 20px; margin-left:20px;margin-top:20px;
 										    border-bottom-left-radius: 20px;">
-										    				<div class="glyphicon glyphicon-plus-sign" style="position:relative; left: -48px" title="updated on {{=activity.publish_date}}"></div>				
-															<div class="glyphicon glyphicon-option-horizontal" style="position:relative; left: -52px"></div>								
+										    				<div class="glyphicon glyphicon-plus-sign" style="position:relative; left: -48px" title="updated on {{=activity.publish_date}}"></div>
+															<div class="glyphicon glyphicon-option-horizontal" style="position:relative; left: -52px"></div>
 															<div style="display:inline;margin-left: -35px">{{=activity.description}}</div>
 														</div>
 											</div>
-																
+
 										{{pass}}
 										</div>
 									{{pass}}
 								</div>
 							</div>
-			</div>			
+			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="row">
@@ -120,39 +120,39 @@
 			<!--	<h4>Registered courses</h4>
 				<hr>
 			-->
-					
+
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<h3 class="panel-title"><div class="glyphicon glyphicon-list"></div> Enrolled Courses</h3>
 							</div>
 							<div class="panel-body">
 							{{if len(my_courses) != 0 or len(my_ta_courses) !=0:}}
-								{{ for course in my_courses:}}							
-										
+								{{ for course in my_courses:}}
+
 										<!--<p>{{=course.cid.name}}<span class="right">{{=A("Visit",_href=URL("course","view/"+str(course.cid)),_class="btn btn-success")}}</span></p>-->
 										<a href="{{=URL("course","main/"+str(course.cid))}}" class="list-group-item">
 											{{=course.cid.name}}<span class="pull-right"><div class="glyphicon glyphicon-circle-arrow-right"> </div></span>
-										</a>		
+										</a>
 										<!--{{=A(course.cid.name,_href=URL("course","view/"+str(course.cid)),_class="list-group-item")}}-->
-										
-									
+
+
 								{{pass}}
-								{{ for course in my_ta_courses:}}							
-										
+								{{ for course in my_ta_courses:}}
+
 										<!--<p>{{=course.cid.name}}<span class="right">{{=A("Visit",_href=URL("course","view/"+str(course.cid)),_class="btn btn-success")}}</span></p>-->
 										<a href="{{=URL("course","main/"+str(course.cid))}}" class="list-group-item">
 											{{=course.cid.name}} <div class="label label-{{ if course.approval == 'yes': }}success{{else:}}warning{{pass}}">TA</div><span class="pull-right"><div class="glyphicon glyphicon-circle-arrow-right"> </div></span>
-										</a>		
+										</a>
 										<!--{{=A(course.cid.name,_href=URL("course","view/"+str(course.cid)),_class="list-group-item")}}-->
-										
-									
+
+
 								{{pass}}
 							{{else:}}
 								<p class="list-group-item">You are yet to register for a course</p>
 							{{pass}}
 							</div>
 						</div>
-					
+
 				</div>
 
 				<div class="col-md-12">
@@ -163,7 +163,7 @@
 							<div class="panel-body">
 								<!-- <div class="list-group"> -->
 								{{ if len(dead_lines) != 0:}}
-									<div class="table-responsive">									
+									<div class="table-responsive">
 										<table class="table table-hover">
 											<tr>
 												<th>Course</th>
@@ -174,7 +174,7 @@
 										<tr class="danger">
 											<td>{{=deadline.cid.name}}</td>
 											<td>{{=deadline.title}}</td>
-											<td>{{=deadline.deadline}}</td>										
+											<td>{{=deadline.deadline}}</td>
 										</tr>
 									{{pass}}
 										</table>
@@ -184,11 +184,43 @@
 								{{pass}}
 								<!-- </div> -->
 							</div>
-					</div>			
+					</div>
 				</div>
+
+
+
+				<div class="col-md-12">
+					<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title"><div class="glyphicon glyphicon-asterisk"></div> Important Dates </h3>
+							</div>
+							<div class="panel-body">
+								{{ if len(imp_dates) != 0:}}
+									<div class="table-responsive">
+										<table class="table table-hover">
+											<tr>
+												<th>date</th>
+												<th>event_name</th>
+											</tr>
+									{{for event in imp_dates:}}
+										<tr class="danger">
+											<td>{{=event.event_id.date}}</td>
+											<td>{{=event_id.event_name}}</td>
+										</tr>
+									{{pass}}
+										</table>
+									</div>
+								{{else:}}
+									<p class="list-group-item">No important dates yet</p>
+								{{pass}}
+								<!-- </div> -->
+							</div>
+					</div>
+				</div>
+
 			</div>
 			</div>
-		
+
 	{{pass}}
 
 {{pass}}

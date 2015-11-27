@@ -43,7 +43,7 @@ def admin():
     elif request.args(0) == "course":
         course_table = SQLFORM.smartgrid(db.course)
     elif request.args(0) == "verify_faculty":
-        query = (db.auth_user.admin_verified == 'no')&(db.auth_user.role == 'faculty')       
+        query = (db.auth_user.admin_verified == 'no')&(db.auth_user.role == 'faculty')
         #verify_grid = SQLFORM.smartgrid(db.auth_user, constraints = dict(auth_user=query))
         verify_grid = 12
         rows = db(query).select()
@@ -76,7 +76,7 @@ def admin_verify():
         response.flash = "Invalid user"
     else :
         db(db.auth_user.id == user1_id).update(admin_verified='yes')
-        
+
         #redirect("admin");
     response.template = "admin"
     s = str(len(row))
@@ -93,6 +93,7 @@ def home():
     courses = None
     my_courses = None
     user_id = auth.user.id
+    imp_dates = []  # to be populated from a table
     # obj = [
     # (T('Home2'), False, URL('default', 'index'), []),
     # (T('Courses2'), False, URL('course', 'index'), [])
@@ -102,25 +103,25 @@ def home():
     if(len(rows) == 1):
         auth_error = "You are still awaiting faculty status approval, contact admin for more details "
     else:
-        message = "Welcome, "+auth.user.first_name        
+        message = "Welcome, "+auth.user.first_name
         if auth.user.role == 'faculty':
             courses = db(db.course.faculty == user_id).select()
             courses_undertaken = db(db.course.faculty == auth.user.id).select()
-            course_id_set = set( [i.id for i in courses_undertaken] )    
+            course_id_set = set( [i.id for i in courses_undertaken] )
 
             if len(course_id_set)!=0:
                 activities = db((db.activity.activity_scope.belongs(('all','faculty'))) & (db.activity.cid.belongs(course_id_set))).select(orderby=~db.activity.publish_date,limitby=(0, 10))
             else :
                 activities = []
         else:
-            my_courses = db((db.course_registration.sid == user_id)).select()            
+            my_courses = db((db.course_registration.sid == user_id)).select()
             my_ta_courses = db((db.course_ta.sid == user_id)).select()
-            course_ids = set([ i.cid for i in my_courses ])            
+            course_ids = set([ i.cid for i in my_courses ])
             if(len(my_ta_courses) != 0):
                 my_ta_courses2 = db((db.course_ta.sid == user_id) & (db.course_ta.approval == 'yes')).select()
                 ta_course_ids = set()
                 for i in my_ta_courses2:
-                    ta_course_ids.add(i.cid)                    
+                    ta_course_ids.add(i.cid)
                 query1  = ((db.activity.activity_scope.belongs(['all']) ) & (db.activity.cid.belongs(course_ids)))
                 query3 = ((db.activity.activity_scope.belongs(['ta','all']) ) & (db.activity.cid.belongs(ta_course_ids)))
                 query2 = ((db.activity.activity_scope.belongs(['student']) )& (db.activity.sid == auth.user.id))
@@ -132,9 +133,9 @@ def home():
             else:
                 query1  = (db.activity.activity_scope.belongs(['all']) ) & (db.activity.cid.belongs(course_ids))
                 query2 = (db.activity.activity_scope.belongs(['student']) )& (db.activity.sid == auth.user.id)
-                activities = db(query1 | query2).select(orderby=~db.activity.publish_date,limitby=(0, 10))                            
+                activities = db(query1 | query2).select(orderby=~db.activity.publish_date,limitby=(0, 10))
             dead_lines = db((db.course_assignments.deadline >= datetime.datetime.now()) & (db.course_assignments.cid.belongs(course_ids))).select()
-    return locals()    
+    return locals()
 
 def user():
     """
@@ -154,7 +155,7 @@ def user():
     """
     auth.settings.mailer = mail
     if request.args(0) == 'profile':
-        redirect(URL("default","profile"))    
+        redirect(URL("default","profile"))
     return dict(form=auth())
 
 def register():
@@ -171,13 +172,13 @@ def register():
 
 @auth.requires_login()
 def profile():
-    db.auth_user.role.readable =False 
+    db.auth_user.role.readable =False
     db.auth_user.role.writable = False
-    db.auth_user.email.readable =False 
+    db.auth_user.email.readable =False
     db.auth_user.email.writable = False
-    db.auth_user.admin_verified.readable =False 
+    db.auth_user.admin_verified.readable =False
     db.auth_user.admin_verified.writable = False
-    form=auth.profile()    
+    form=auth.profile()
     return locals()
 
 @auth.requires_login()
